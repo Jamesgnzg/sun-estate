@@ -18,9 +18,13 @@ const ListingsBar: FC<ListingsBarProps> = ({
     console.info("You clicked the delete icon.");
   };
 
-  const createFilterPill = (filter: FilterValue): ReactElement => {
+  const createFilterPill = (
+    filter: FilterValue,
+    index: number
+  ): ReactElement => {
     return (
       <Chip
+        key={index}
         label={filter.label}
         variant="outlined"
         onClick={handleClick}
@@ -33,7 +37,7 @@ const ListingsBar: FC<ListingsBarProps> = ({
     <div className="flex justify-between pb-3">
       <p className="pt-2">10, 356 (House for sale)</p>
       <div className="flex space-x-4">
-        {filterPills.map((filter) => createFilterPill(filter))}
+        {filterPills.map((filter, index) => createFilterPill(filter, index))}
       </div>
       <div className="flex justify-between">
         <Button

@@ -18,15 +18,15 @@ const ListingViews: FC<ListingViewsProps> = ({
   return (
     <>
       <div
-        className={`w-full grid gap-3 ${
+        className={`w-full grid gap-2 ${
           viewType == TILE ? "grid-cols-4" : "grid-cols-1"
         }`}
       >
-        {Estates.map((estate) =>
+        {Estates.map((estate, index) =>
           viewType == TILE ? (
-            <TileCards estate={estate} />
+            <TileCards estate={estate} key={index} />
           ) : (
-            <ListEstate estate={estate} />
+            <ListEstate estate={estate} key={index} />
           )
         )}
       </div>

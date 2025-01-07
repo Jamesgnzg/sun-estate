@@ -4,25 +4,32 @@ import {
   AccordionSummary,
   Checkbox,
   Divider,
+  FormControl,
   FormControlLabel,
   FormGroup,
   Stack,
   Typography,
 } from "@mui/material";
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, SyntheticEvent, useEffect } from "react";
 import { Filters } from "../../../data/filter-options";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
-import { FilterValue } from "../../../interface/filter";
+import { Filter, FilterOptions, FilterValue } from "../../../interface/filter";
+import { useListings } from "../../../context/listings-context";
 
 interface FilterListProps {
   filterTitle: string;
-  filterValues: FilterValue[];
+  filterOptions: FilterValue[];
 }
 
 const FilterList: FC<FilterListProps> = ({
   filterTitle,
-  filterValues,
+  filterOptions,
 }: FilterListProps): ReactElement => {
+  const handleChange = (event: SyntheticEvent, checked: boolean) => {
+    console.log(checked);
+    console.log(event);
+  };
+
   return (
     <>
       <Accordion className="bg-neutral-50 shadow-none p-0 border-0">
@@ -34,23 +41,28 @@ const FilterList: FC<FilterListProps> = ({
         >
           <Typography component="span">{filterTitle}</Typography>
         </AccordionSummary>
-        <AccordionDetails className="p-0">
-          <FormGroup>
-            {filterValues.map((values) => (
-              <FormControlLabel
-                control={
-                  <Checkbox
-                    sx={{
-                      "&.Mui-checked": {
-                        color: "#ef4444",
-                      },
-                    }}
-                  />
-                }
-                label={values.label}
-              />
-            ))}
-          </FormGroup>
+        <AccordionDetails>
+          <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+            <FormGroup>
+              {filterOptions.map((option, index) => (
+                <FormControlLabel
+                  key={index}
+                  control={
+                    <Checkbox
+                      sx={{
+                        "&.Mui-checked": {
+                          color: "#ef4444",
+                        },
+                      }}
+                    />
+                  }
+                  label={option.label}
+                  value={option.value}
+                  onChange={handleChange}
+                />
+              ))}
+            </FormGroup>
+          </FormControl>
         </AccordionDetails>
       </Accordion>
     </>
@@ -58,7 +70,24 @@ const FilterList: FC<FilterListProps> = ({
 };
 
 const ListingsFilter: FC = (): ReactElement => {
+  const { addFilterProperty } = useListings();
   const filtertitle = "Filter by";
+  const filterOptions = Filters;
+
+  const createFiltersOptions = (FilterOptions: FilterOptions[]) => {
+    FilterOptions.forEach((filter) => {
+      const newFilter: Filter = {
+        property: filter.filterProperty,
+        valueLabels: [],
+        values: [],
+      };
+      addFilterProperty(newFilter);
+    });
+  };
+
+  useEffect(() => {
+    createFiltersOptions(filterOptions);
+  }, []);
 
   return (
     <>
@@ -68,16 +97,18 @@ const ListingsFilter: FC = (): ReactElement => {
         aria-label="Sidebar"
       >
         <div className="h-full p-5 overflow-y-auto bg-neutral-50">
-          <p className="text-3xl">{filtertitle}</p>
+          <Typography component="span" className="text-2xl">
+            {filtertitle}
+          </Typography>
           <Stack className="pt-5">
-            {Filters.map((filter) => (
-              <>
+            {filterOptions.map((filter, index) => (
+              <div key={index}>
                 <Divider className="bg-gray-50" />
                 <FilterList
                   filterTitle={filter.filterTitle}
-                  filterValues={filter.options}
+                  filterOptions={filter.options}
                 />
-              </>
+              </div>
             ))}
           </Stack>
         </div>
