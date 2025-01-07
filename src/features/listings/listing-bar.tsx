@@ -1,6 +1,7 @@
-import { Chip } from "@mui/material";
+import { Button, Chip } from "@mui/material";
 import { FC, ReactElement } from "react";
 import { FilterValue } from "../../interface/filter";
+import RestartAltIcon from "@mui/icons-material/RestartAlt";
 
 interface ListingsBarProps {
   filterPills: FilterValue[];
@@ -34,7 +35,15 @@ const ListingsBar: FC<ListingsBarProps> = ({
       <div className="flex space-x-4">
         {filterPills.map((filter) => createFilterPill(filter))}
       </div>
-      <div className="flex justify-between"></div>
+      <div className="flex justify-between">
+        <Button
+          variant="outlined"
+          className="bg-stone-200 border-stone-200 rounded-lg text-black"
+          endIcon={<RestartAltIcon />}
+        >
+          Clear Filter
+        </Button>
+      </div>
     </div>
   );
 };
