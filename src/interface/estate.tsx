@@ -7,5 +7,5 @@ export interface Estate {
   description: string;
   bedroom: number;
   bathroom: number;
-  property_type: typeof PropertyType;
+  property_type: keyof typeof PropertyType;
 }

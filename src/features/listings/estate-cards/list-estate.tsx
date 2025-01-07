@@ -34,10 +34,10 @@ const ListEstate: FC<ListEstateProps> = ({
         />
         <div className="flex flex-col w-full">
           <div className="p-3">
-            <h3 className="mb-2 text-2xl font-bold text-gray-800 dark:text-white">
+            <h3 className="mb-2 text-3xl font-bold text-gray-800 dark:text-white">
               {convertToDollarFormat(estate.price)}
             </h3>
-            <h3 className="mb-2 text-2xl font-bold text-gray-500 dark:text-white">
+            <h3 className="mb-2 text-lg font-bold text-gray-500 dark:text-white">
               {estate.description}
             </h3>
           </div>

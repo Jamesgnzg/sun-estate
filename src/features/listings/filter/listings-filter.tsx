@@ -3,6 +3,7 @@ import {
   AccordionDetails,
   AccordionSummary,
   Checkbox,
+  Divider,
   FormControlLabel,
   FormGroup,
   Stack,
@@ -71,7 +72,7 @@ const ListingsFilter: FC = (): ReactElement => {
           <Stack className="pt-5">
             {Filters.map((filter) => (
               <>
-                {/* <Divider className="bg-gray-50" /> */}
+                <Divider className="bg-gray-50" />
                 <FilterList
                   filterTitle={filter.filterTitle}
                   filterValues={filter.options}

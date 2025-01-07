@@ -56,4 +56,22 @@ export const Estates: Estate[] = [
     bedroom: 103,
     bathroom: 34,
   },
+  {
+    price: 100000,
+    area: 550,
+    location: "Marikina",
+    description: "Smooth",
+    property_type: LAND,
+    bedroom: 20,
+    bathroom: 5,
+  },
+  {
+    price: 25000,
+    area: 45,
+    location: "Marikina",
+    description: "Smooth",
+    property_type: APARTMENT,
+    bedroom: 5,
+    bathroom: 1,
+  },
 ] as const;

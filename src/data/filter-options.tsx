@@ -13,6 +13,7 @@ const {
 export const Filters: FilterOptions[] = [
   {
     filterTitle: "Property Type",
+    filterProperty: "property_type",
     options: [
       SINGLE_FAMILY,
       CONDO_TOWNHOUSE,
@@ -24,6 +25,7 @@ export const Filters: FilterOptions[] = [
   },
   {
     filterTitle: "Bedrooms",
+    filterProperty: "bedroom",
     options: [
       { label: "1 Bedroom", value: 1 },
       { label: "2 Bedrooms", value: 2 },

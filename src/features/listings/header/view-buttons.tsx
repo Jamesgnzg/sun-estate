@@ -2,7 +2,6 @@ import { FC, ReactElement } from "react";
 import { ToggleButton, ToggleButtonGroup } from "@mui/material";
 import ViewListIcon from "@mui/icons-material/ViewList";
 import ViewModuleIcon from "@mui/icons-material/ViewModule";
-import ViewQuiltIcon from "@mui/icons-material/ViewQuilt";
 import { useListings } from "../../../context/listings-context";
 import { ViewTypes } from "../../../types/ViewTypes";
 import { Views } from "../../../enums/view-type";
@@ -15,7 +14,7 @@ const ViewButtons: FC = (): ReactElement => {
     event: React.MouseEvent<HTMLElement>,
     nextView: ViewTypes
   ) => {
-    console.log(event);
+    console.log(nextView);
     updateView(nextView);
   };
 
@@ -31,9 +30,6 @@ const ViewButtons: FC = (): ReactElement => {
       </ToggleButton>
       <ToggleButton value={TILE} aria-label={TILE}>
         <ViewModuleIcon />
-      </ToggleButton>
-      <ToggleButton value="quilt" aria-label="quilt">
-        <ViewQuiltIcon />
       </ToggleButton>
     </ToggleButtonGroup>
   );
