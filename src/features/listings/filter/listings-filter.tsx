@@ -15,19 +15,51 @@ import { Filters } from "../../../data/filter-options";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { Filter, FilterOptions, FilterValue } from "../../../interface/filter";
 import { useListings } from "../../../context/listings-context";
+import { Estate } from "../../../interface/estate";
 
 interface FilterListProps {
   filterTitle: string;
+  filterProperty: keyof Estate;
   filterOptions: FilterValue[];
 }
 
 const FilterList: FC<FilterListProps> = ({
   filterTitle,
+  filterProperty,
   filterOptions,
 }: FilterListProps): ReactElement => {
+  const { filters, updateFilters } = useListings();
   const handleChange = (event: SyntheticEvent, checked: boolean) => {
-    console.log(checked);
-    console.log(event);
+    const checkboxTarget = event.target as HTMLSelectElement;
+    const checkBoxLabel = checkboxTarget.labels[0].innerText;
+    const checkBoxValue = checkboxTarget.value;
+    const isNumber = !isNaN(Number(checkBoxValue));
+    const value = isNumber ? Number(checkBoxValue) : checkBoxValue;
+    let updatedFilter: Filter | undefined = filters.find(
+      (filter) => filter.property == filterProperty
+    );
+
+    if (updatedFilter) {
+      if (checked) {
+        updatedFilter.valueLabels.push(checkBoxLabel);
+        updatedFilter.values.push(value);
+      } else {
+        //remove if existing
+        const index = updatedFilter.values.indexOf(value);
+        updatedFilter.valueLabels.splice(index, 1);
+        updatedFilter.values.splice(index, 1);
+      }
+    } else {
+      const newFilter: Filter = {
+        property: filterProperty,
+        valueLabels: [checkBoxLabel],
+        values: [checkBoxValue],
+      };
+
+      updatedFilter = newFilter;
+    }
+
+    updateFilters(updatedFilter);
   };
 
   return (
@@ -106,6 +138,7 @@ const ListingsFilter: FC = (): ReactElement => {
                 <Divider className="bg-gray-50" />
                 <FilterList
                   filterTitle={filter.filterTitle}
+                  filterProperty={filter.filterProperty}
                   filterOptions={filter.options}
                 />
               </div>

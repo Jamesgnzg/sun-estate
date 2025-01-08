@@ -1,4 +1,4 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 import { Views } from "../enums/view-type";
 import { Estate } from "../interface/estate";
 import { Filter } from "../interface/filter";
@@ -14,6 +14,7 @@ type TlistingsContextType = {
   updateAvailableEstates(estate: Estate[]): void;
   addFilterProperty(filter: Filter): void;
   updateFilters(filter: Filter): void;
+  applyFilters(estate: Estate[]): Estate[];
 };
 
 type TlistingsContextProps = {
@@ -45,15 +46,37 @@ export const ListingsContextProvider = ({
 
   const updateFilters = (updatedFilter: Filter): void => {
     setFilters((prevFilters) => {
-      return prevFilters.map((filter) => {
-        if (updatedFilter.property == filter.property) {
-          filter.valueLabels = updatedFilter.valueLabels;
-          filter.values = updatedFilter.values;
-        }
+      const newFilters = [...prevFilters];
+      const updatedIndex = prevFilters.findIndex(
+        (filter) => filter.property == updatedFilter.property
+      );
 
-        return filter;
-      });
+      if (updatedIndex > -1) {
+        newFilters[updatedIndex].valueLabels = updatedFilter.valueLabels;
+        newFilters[updatedIndex].values = updatedFilter.values;
+      } else {
+        //if filter is not existing add a new filter
+        newFilters.push(updatedFilter);
+      }
+
+      return newFilters;
     });
+  };
+
+  const applyFilters = (estates: Estate[]): Estate[] => {
+    const currentList = estates;
+    const newList = currentList.filter((estate) => {
+      let val = true;
+      filters.forEach((filter) => {
+        if (filter.values.length !== 0) {
+          val = filter.values.includes(estate[filter.property]);
+        }
+      });
+
+      return val;
+    });
+
+    return newList;
   };
 
   return (
@@ -66,6 +89,7 @@ export const ListingsContextProvider = ({
         updateAvailableEstates: updateAvailableEstates,
         addFilterProperty: addFilterProperty,
         updateFilters: updateFilters,
+        applyFilters: applyFilters,
       }}
     >
       {children}
