@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { Views } from "../enums/view-type";
 import { Estate } from "../interface/estate";
 import { Filter } from "../interface/filter";
