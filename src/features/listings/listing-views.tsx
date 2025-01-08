@@ -1,19 +1,22 @@
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useEffect } from "react";
 import { useListings } from "../../context/listings-context";
 import ListEstate from "./estate-cards/list-estate";
 import TileCards from "./estate-cards/tile-cards";
 import { Views } from "../../enums/view-type";
-import { Estate } from "../../interface/estate";
+import { Estates } from "../../data/estates";
 
-interface ListingViewsProps {
-  Estates: Estate[];
-}
-
-const ListingViews: FC<ListingViewsProps> = ({
-  Estates,
-}: ListingViewsProps): ReactElement => {
-  const { viewType } = useListings();
+const ListingViews: FC = (): ReactElement => {
+  const { estates, viewType, updateAvailableEstates, filters, applyFilters } =
+    useListings();
   const { TILE } = Views;
+
+  useEffect(() => {
+    updateAvailableEstates(Estates);
+  }, []);
+
+  useEffect(() => {
+    updateAvailableEstates(applyFilters(Estates));
+  }, [filters]);
 
   return (
     <>
@@ -22,7 +25,7 @@ const ListingViews: FC<ListingViewsProps> = ({
           viewType == TILE ? "grid-cols-4" : "grid-cols-1"
         }`}
       >
-        {Estates.map((estate, index) =>
+        {estates.map((estate, index) =>
           viewType == TILE ? (
             <TileCards estate={estate} key={index} />
           ) : (
