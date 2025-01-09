@@ -12,9 +12,6 @@ const ListingsBar: FC<ListingsBarProps> = ({
   filterPills,
 }: ListingsBarProps): ReactElement => {
   const { clearFilters } = useListings();
-  const handleClick = () => {
-    console.info("You clicked the Chip.");
-  };
 
   const handleDelete = () => {
     console.info("You clicked the delete icon.");
@@ -29,7 +26,6 @@ const ListingsBar: FC<ListingsBarProps> = ({
         key={index}
         label={filter.label}
         variant="outlined"
-        onClick={handleClick}
         onDelete={handleDelete}
       />
     );
