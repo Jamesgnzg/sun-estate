@@ -3,7 +3,7 @@ import { Estate } from "./estate";
 export interface Filter {
   property: keyof Estate;
   valueLabels: string[];
-  values: unknown[];
+  values: any[];
 }
 
 export interface FilterValue {
