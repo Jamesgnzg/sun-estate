@@ -2,6 +2,7 @@ import { Button, Chip } from "@mui/material";
 import { FC, ReactElement } from "react";
 import { FilterValue } from "../../interface/filter";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
+import { useListings } from "../../context/listings-context";
 
 interface ListingsBarProps {
   filterPills: FilterValue[];
@@ -10,6 +11,7 @@ interface ListingsBarProps {
 const ListingsBar: FC<ListingsBarProps> = ({
   filterPills,
 }: ListingsBarProps): ReactElement => {
+  const { clearFilters } = useListings();
   const handleClick = () => {
     console.info("You clicked the Chip.");
   };
@@ -44,6 +46,7 @@ const ListingsBar: FC<ListingsBarProps> = ({
           variant="outlined"
           className="bg-stone-200 border-stone-200 rounded-lg text-black"
           endIcon={<RestartAltIcon />}
+          onClick={clearFilters}
         >
           Clear Filter
         </Button>

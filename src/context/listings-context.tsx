@@ -15,6 +15,7 @@ type TlistingsContextType = {
   addFilterProperty(filter: Filter): void;
   updateFilters(filter: Filter): void;
   applyFilters(estate: Estate[]): Estate[];
+  clearFilters(): void;
 };
 
 type TlistingsContextProps = {
@@ -79,6 +80,19 @@ export const ListingsContextProvider = ({
     return newList;
   };
 
+  const clearFilters = (): void => {
+    setFilters((prevFilter) => {
+      const newFilter = [...prevFilter];
+
+      newFilter.forEach((filter) => {
+        filter.valueLabels.length = 0;
+        filter.values.length = 0;
+      });
+
+      return newFilter;
+    });
+  };
+
   return (
     <ListingsContext.Provider
       value={{
@@ -90,6 +104,7 @@ export const ListingsContextProvider = ({
         addFilterProperty: addFilterProperty,
         updateFilters: updateFilters,
         applyFilters: applyFilters,
+        clearFilters: clearFilters,
       }}
     >
       {children}
