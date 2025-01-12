@@ -11,7 +11,7 @@ interface ListingsBarProps {
 const ListingsBar: FC<ListingsBarProps> = ({
   filterPills,
 }: ListingsBarProps): ReactElement => {
-  const { clearFilters } = useListings();
+  const { estates, clearFilters } = useListings();
 
   const handleDelete = () => {
     console.info("You clicked the delete icon.");
@@ -33,7 +33,7 @@ const ListingsBar: FC<ListingsBarProps> = ({
 
   return (
     <div className="flex justify-between pb-3">
-      <p className="pt-2">10, 356 (House for sale)</p>
+      <p className="pt-2">{`${estates.length} (House for sale)`}</p>
       <div className="flex space-x-4">
         {filterPills.map((filter, index) => createFilterPill(filter, index))}
       </div>
