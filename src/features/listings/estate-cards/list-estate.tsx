@@ -1,4 +1,4 @@
-import { Button, Divider } from "@mui/material";
+import { Button, Divider, IconButton } from "@mui/material";
 import { FC, ReactElement, memo } from "react";
 import { Estate } from "../../../interface/estate";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -59,12 +59,9 @@ const ListEstate: FC<ListEstateProps> = ({
                 </div>
               </div>
               <div className="flex gap-3">
-                <Button
-                  className="bg-gray-100 rounded-lg text-black"
-                  variant="contained"
-                >
+                <IconButton aria-label="favorite">
                   <FavoriteBorderIcon />
-                </Button>
+                </IconButton>
                 <Button
                   className="w-52 bg-red-500 rounded-lg"
                   variant="contained"

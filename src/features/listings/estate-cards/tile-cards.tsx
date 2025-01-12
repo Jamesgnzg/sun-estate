@@ -1,4 +1,4 @@
-import { Button, Divider } from "@mui/material";
+import { Button, Divider, IconButton } from "@mui/material";
 import { FC, memo, ReactElement } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BedRoundedIcon from "@mui/icons-material/BedRounded";
@@ -50,16 +50,13 @@ const TileCards: FC<TileCardsProps> = ({
         </div>
       </div>
       <Divider />
-      <div className="flex gap-5 p-3 md:p-3">
+      <div className="flex gap-3 p-3 md:p-3">
         <Button className="w-72 bg-red-500 rounded-lg" variant="contained">
           Chat Agent
         </Button>
-        <Button
-          className="bg-gray-100 rounded-lg text-black"
-          variant="contained"
-        >
+        <IconButton aria-label="favorite">
           <FavoriteBorderIcon />
-        </Button>
+        </IconButton>
       </div>
     </div>
   );
