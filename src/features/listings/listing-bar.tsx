@@ -13,22 +13,11 @@ const ListingsBar: FC<ListingsBarProps> = ({
 }: ListingsBarProps): ReactElement => {
   const { estates, clearFilters } = useListings();
 
-  const handleDelete = () => {
-    console.info("You clicked the delete icon.");
-  };
-
   const createFilterPill = (
     filter: FilterValue,
     index: number
   ): ReactElement => {
-    return (
-      <Chip
-        key={index}
-        label={filter.label}
-        variant="outlined"
-        onDelete={handleDelete}
-      />
-    );
+    return <Chip key={index} label={filter.label} variant="outlined" />;
   };
 
   return (
