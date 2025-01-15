@@ -123,11 +123,7 @@ const ListingsFilter: FC = (): ReactElement => {
 
   return (
     <>
-      <aside
-        id="default-sidebar"
-        className="w-72 min-h-screen transition-transform -translate-x-full sm:translate-x-0"
-        aria-label="Sidebar"
-      >
+      <aside id="default-sidebar" aria-label="Sidebar">
         <div className="h-full p-5 overflow-y-auto bg-neutral-50">
           <Typography component="span" className="text-2xl">
             {filtertitle}

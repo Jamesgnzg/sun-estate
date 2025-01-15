@@ -35,17 +35,17 @@ const ListEstate: FC<ListEstateProps> = ({
             <Divider />
             <div className="flex justify-between p-3 md:p-3">
               <div className="flex gap-3">
-                <div className="flex border rounded-lg gap-2 py-1 px-5 bg-neutral-50">
+                <div className="flex border rounded-lg gap-2 py-2 px-5 bg-neutral-50">
                   <BedRoundedIcon />
-                  <p>{estate.bedroom}</p>
+                  <p className="text-xs pt-1">{estate.bedroom}</p>
                 </div>
-                <div className="flex border rounded-lg gap-2 py-1 px-5 bg-neutral-50">
+                <div className="flex border rounded-lg gap-2 py-2 px-5 bg-neutral-50">
                   <BathtubOutlinedIcon />
-                  <p>{estate.bathroom}</p>
+                  <p className="text-xs pt-1">{estate.bathroom}</p>
                 </div>
-                <div className="flex border rounded-lg gap-1 py-1 px-5 bg-neutral-50">
+                <div className="flex border rounded-lg gap-1 py-2 px-5 bg-neutral-50">
                   <OpenWithRoundedIcon />
-                  <p>{`${estate.area} m²`}</p>
+                  <p className="text-xs pt-1">{`${estate.area} m²`}</p>
                 </div>
               </div>
               <div className="flex gap-3">

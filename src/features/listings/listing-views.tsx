@@ -21,7 +21,7 @@ const ListingViews: FC = (): ReactElement => {
   return (
     <>
       <div
-        className={`w-full grid gap-2 ${
+        className={`w-full grid gap-3 ${
           viewType == TILE ? "grid-cols-4" : "grid-cols-1"
         }`}
       >
