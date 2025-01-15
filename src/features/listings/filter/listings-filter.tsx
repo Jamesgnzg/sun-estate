@@ -73,8 +73,8 @@ const FilterList: FC<FilterListProps> = ({
         >
           <Typography component="span">{filterTitle}</Typography>
         </AccordionSummary>
-        <AccordionDetails>
-          <FormControl sx={{ m: 3 }} component="fieldset" variant="standard">
+        <AccordionDetails sx={{ pb: 1, pt: 0 }}>
+          <FormControl component="fieldset" variant="standard">
             <FormGroup>
               {filterOptions.map((option, index) => (
                 <FormControlLabel
