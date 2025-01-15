@@ -13,7 +13,7 @@ const {
 export const Estates: Estate[] = [
   {
     price: 400000,
-    area: 10000,
+    area: 300,
     location: "Marikina",
     description: "Smooth",
     property_type: SINGLE_FAMILY.value,

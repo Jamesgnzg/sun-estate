@@ -4,6 +4,7 @@ import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BedRoundedIcon from "@mui/icons-material/BedRounded";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import OpenWithRoundedIcon from "@mui/icons-material/OpenWithRounded";
+import { convertToDollarFormat } from "../../../utils/currency";
 import { Estate } from "../../../interface/estate";
 
 interface TileCardsProps {
@@ -12,17 +13,6 @@ interface TileCardsProps {
 const TileCards: FC<TileCardsProps> = ({
   estate,
 }: TileCardsProps): ReactElement => {
-  const convertToDollarFormat = (price: number): string => {
-    let USDollar = new Intl.NumberFormat("en-US", {
-      style: "currency",
-      currency: "USD",
-      maximumFractionDigits: 0,
-      minimumFractionDigits: 0,
-    });
-
-    return USDollar.format(price);
-  };
-
   return (
     <div className="w-full bg-neutral-50 border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
       <img
