@@ -17,13 +17,20 @@ const ListingsBar: FC<ListingsBarProps> = ({
     filter: FilterValue,
     index: number
   ): ReactElement => {
-    return <Chip key={index} label={filter.label} variant="outlined" />;
+    return (
+      <Chip
+        key={index}
+        label={filter.label}
+        variant="outlined"
+        className="mt-1"
+      />
+    );
   };
 
   return (
     <div className="flex justify-between pb-3">
       <p className="pt-2">{`${estates.length} (House for sale)`}</p>
-      <div className="flex space-x-4">
+      <div className="flex flex-wrap space-x-4 grow-0">
         {filterPills.map((filter, index) => createFilterPill(filter, index))}
       </div>
       <div className="flex justify-between">

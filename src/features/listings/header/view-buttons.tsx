@@ -14,7 +14,6 @@ const ViewButtons: FC = (): ReactElement => {
     event: React.MouseEvent<HTMLElement>,
     nextView: ViewTypes
   ) => {
-    console.log(nextView);
     updateView(nextView);
   };
 
