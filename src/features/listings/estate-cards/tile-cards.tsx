@@ -1,4 +1,4 @@
-import { Button, Divider, IconButton } from "@mui/material";
+import { Button, Divider, IconButton, Typography } from "@mui/material";
 import { FC, memo, ReactElement } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BedRoundedIcon from "@mui/icons-material/BedRounded";
@@ -21,9 +21,12 @@ const TileCards: FC<TileCardsProps> = ({
         alt="Card Image"
       />
       <div className="p-1">
-        <h3 className="mb-2 text-2xl pl-2 pt-1 font-bold text-gray-800 dark:text-white">
+        <Typography
+          component="h3"
+          className="text-2xl mb-2 pl-2 pt-1 font-bold text-gray-800 dark:text-white"
+        >
           {convertToDollarFormat(estate.price)}
-        </h3>
+        </Typography>
         <div className="flex p-2 gap-2">
           <div className="flex border rounded-lg gap-2 py-1 px-2 bg-neutral-50">
             <BedRoundedIcon />

@@ -1,4 +1,4 @@
-import { Button, Divider, IconButton } from "@mui/material";
+import { Button, Divider, IconButton, Typography } from "@mui/material";
 import { FC, ReactElement, memo } from "react";
 import { Estate } from "../../../interface/estate";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
@@ -24,12 +24,18 @@ const ListEstate: FC<ListEstateProps> = ({
         />
         <div className="flex flex-col w-full">
           <div className="p-3">
-            <h3 className="mb-2 text-3xl font-bold text-gray-800 dark:text-white">
+            <Typography
+              component="h3"
+              className="text-3xl mb-2 font-bold text-gray-800 dark:text-white"
+            >
               {convertToDollarFormat(estate.price)}
-            </h3>
-            <h3 className="mb-2 text-lg font-bold text-gray-500 dark:text-white">
+            </Typography>
+            <Typography
+              component="h3"
+              className="mb-2 text-lg font-bold text-gray-500 dark:text-white"
+            >
               {estate.description}
-            </h3>
+            </Typography>
           </div>
           <div className="mt-auto">
             <Divider />
