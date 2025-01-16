@@ -22,7 +22,7 @@ const ListingsBar: FC<ListingsBarProps> = ({
         key={index}
         label={filter.label}
         variant="outlined"
-        className="mt-1"
+        className="mt-1 bg-red-500 text-white border-0"
       />
     );
   };
