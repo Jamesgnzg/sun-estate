@@ -26,10 +26,14 @@ const FilterList: FC<FilterListProps> = ({
   filterOptions,
 }: FilterListProps): ReactElement => {
   const { filters, updateFilters } = useListings();
+  const propertyFilter: Filter | undefined = filters.find(
+    (filter) => filter.property == filterProperty
+  );
+
   const handleChange = (event: SyntheticEvent, checked: boolean) => {
-    const checkboxTarget = event.target as HTMLSelectElement;
-    const checkBoxLabel = checkboxTarget.labels[0].innerText;
-    const checkBoxValue = checkboxTarget.value;
+    const checkBoxElement = event.target as HTMLSelectElement;
+    const checkBoxLabel = checkBoxElement.labels[0].innerText;
+    const checkBoxValue = checkBoxElement.value;
     const isNumber = !isNaN(Number(checkBoxValue));
     const value = isNumber ? Number(checkBoxValue) : checkBoxValue;
     let updatedFilter: Filter | undefined = filters.find(
@@ -83,6 +87,11 @@ const FilterList: FC<FilterListProps> = ({
                           color: "#ef4444",
                         },
                       }}
+                      checked={
+                        propertyFilter
+                          ? propertyFilter?.valueLabels.includes(option.label)
+                          : false
+                      }
                     />
                   }
                   label={option.label}
