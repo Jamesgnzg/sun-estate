@@ -24,9 +24,9 @@ const LocationSearch: FC = (): ReactElement => {
   const locations = useMemo(
     () =>
       [...new Set(Estates.map((estate) => estate.location.trim()))].sort(
-        (a, b) => a.localeCompare(b)
+        (a, b) => a.localeCompare(b),
       ),
-    []
+    [],
   );
 
   // Selection lives in the listings context so pills and "Clear Filter" stay in sync
@@ -35,7 +35,7 @@ const LocationSearch: FC = (): ReactElement => {
     [];
 
   const filteredLocations = locations.filter((location) =>
-    location.toLowerCase().includes(query.trim().toLowerCase())
+    location.toLowerCase().includes(query.trim().toLowerCase()),
   );
 
   useEffect(() => {
@@ -65,7 +65,7 @@ const LocationSearch: FC = (): ReactElement => {
     setSelected(
       selected.includes(location)
         ? selected.filter((value) => value !== location)
-        : [...selected, location]
+        : [...selected, location],
     );
     setQuery("");
     inputRef.current?.focus();
@@ -77,13 +77,13 @@ const LocationSearch: FC = (): ReactElement => {
     inputRef.current?.focus();
   };
 
-  const handleKeyDown =(event: KeyboardEvent<HTMLInputElement>) => {
+  const handleKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
     switch (event.key) {
       case "ArrowDown":
         event.preventDefault();
         setIsOpen(true);
         setActiveIndex((index) =>
-          Math.min(index + 1, filteredLocations.length - 1)
+          Math.min(index + 1, filteredLocations.length - 1),
         );
         break;
       case "ArrowUp":
@@ -144,7 +144,7 @@ const LocationSearch: FC = (): ReactElement => {
               ? `location-option-${activeIndex}`
               : undefined
           }
-          placeholder={selected.length ? "" : "Search location..."}
+          placeholder={selected.length ? "" : "Search location"}
           value={query}
           onChange={(event) => {
             setQuery(event.target.value);
