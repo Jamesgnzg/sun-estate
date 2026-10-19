@@ -1,4 +1,6 @@
 import { FC, ReactElement } from "react";
+import { Link } from "react-router-dom";
+import { FOR_SALE, CONTACT } from "../routes/paths";
 const NavBar: FC = (): ReactElement => {
   return (
     <>
@@ -6,13 +8,13 @@ const NavBar: FC = (): ReactElement => {
         <div className="flex justify-between">
           <p className="px-3 py-2 text-white">Sun Estate</p>
           <div className="flex space-x-4">
-            <a
-              href="#"
+            <Link
+              to={FOR_SALE}
               className="rounded-md px-3 py-2  text-white bg-gray-700"
               aria-current="page"
             >
               For Sale
-            </a>
+            </Link>
             <a
               href="#"
               className="rounded-md px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
@@ -31,6 +33,12 @@ const NavBar: FC = (): ReactElement => {
             >
               Sell
             </a>
+            <Link
+              to={CONTACT}
+              className="rounded-md px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
+            >
+              Contact Us
+            </Link>
           </div>
           <div className="flex justify-between">
             <p className="px-3 py-2 text-white">Hi Joseph!</p>

@@ -15,7 +15,7 @@ const ListingsBar: FC<ListingsBarProps> = ({
 
   const createFilterPill = (
     filter: FilterValue,
-    index: number
+    index: number,
   ): ReactElement => {
     return (
       <Chip
@@ -29,7 +29,7 @@ const ListingsBar: FC<ListingsBarProps> = ({
 
   return (
     <div className="flex justify-between pb-3">
-      <p className="pt-2">{`${estates.length} (House for sale)`}</p>
+      <p className="pt-2">{`${estates.length} (Houses for sale)`}</p>
       <div className="flex flex-wrap space-x-4 grow-0">
         {filterPills.map((filter, index) => createFilterPill(filter, index))}
       </div>

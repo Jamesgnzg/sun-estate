@@ -1,5 +1,6 @@
 import Listings from "../page/listings";
-import { INDEX, FOR_SALE } from "./paths";
+import ContactUs from "../page/contact-us";
+import { INDEX, FOR_SALE, CONTACT } from "./paths";
 
 export const privateRoutes = [
   {
@@ -9,5 +10,9 @@ export const privateRoutes = [
   {
     path: FOR_SALE,
     element: <Listings />,
+  },
+  {
+    path: CONTACT,
+    element: <ContactUs />,
   },
 ];

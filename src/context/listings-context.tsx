@@ -2,9 +2,27 @@ import { createContext, useContext, useState } from "react";
 import { Views } from "../enums/view-type";
 import { Estate } from "../interface/estate";
 import { Filter } from "../interface/filter";
+import { Filters } from "../data/filter-options";
 import { ViewTypes } from "../types/ViewTypes";
 
 const { TILE } = Views;
+
+const matchesFilter = (estate: Estate, filter: Filter): boolean => {
+  if (filter.values.length === 0) return true;
+
+  const estateValue = estate[filter.property];
+  const options =
+    Filters.find((option) => option.filterProperty == filter.property)
+      ?.options ?? [];
+
+  return filter.values.some((selected) => {
+    const range = options.find((option) => option.value == selected)?.range;
+    if (!range) return selected === estateValue;
+
+    const value = Number(estateValue);
+    return value >= range.min && (range.max === undefined || value < range.max);
+  });
+};
 
 type TlistingsContextType = {
   viewType: ViewTypes;
@@ -66,16 +84,9 @@ export const ListingsContextProvider = ({
 
   const applyFilters = (estates: Estate[]): Estate[] => {
     const currentList = estates;
-    const newList = currentList.filter((estate) => {
-      let val = true;
-      filters.forEach((filter) => {
-        if (filter.values.length !== 0) {
-          val = filter.values.includes(estate[filter.property]);
-        }
-      });
-
-      return val;
-    });
+    const newList = currentList.filter((estate) =>
+      filters.every((filter) => matchesFilter(estate, filter))
+    );
 
     return newList;
   };
