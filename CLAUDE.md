@@ -13,3 +13,9 @@ I am a full stack developer that specialize in web applications and I'm currentl
 - Keep reports and summaries concise - bullet points over paragaraphs
 - Cite sources when doing research
 - Follow the convetions and structure I have created for this project
+
+# Tech Stacks
+
+- Tailwindcss v3.14.17
+- React v18.3.1
+- Typescript v5.6.2

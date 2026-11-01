@@ -1,3 +1,9 @@
+@import "./App.css";
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+/* 
+    Add base stylings here for <body>, <html>, etc...
+*/

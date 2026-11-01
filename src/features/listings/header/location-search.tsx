@@ -112,7 +112,7 @@ const LocationSearch: FC = (): ReactElement => {
   return (
     <div ref={containerRef} className="relative w-full max-w-md">
       <div
-        className="flex flex-wrap items-center gap-1 rounded-md border border-gray-300 bg-white px-2 py-1 focus-within:ring-2 focus-within:ring-gray-700"
+        className="flex flex-wrap items-center gap-1 rounded-md border border-gray-300 bg-white px-2 py-1 focus-within:input-ring"
         onClick={() => inputRef.current?.focus()}
       >
         {selected.map((location) => (
@@ -179,9 +179,7 @@ const LocationSearch: FC = (): ReactElement => {
           className="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg"
         >
           {filteredLocations.length === 0 ? (
-            <li className="px-3 py-2 text-sm text-gray-500">
-              {NO_RESULTS}
-            </li>
+            <li className="px-3 py-2 text-sm text-gray-500">{NO_RESULTS}</li>
           ) : (
             filteredLocations.map((location, index) => {
               const isSelected = selected.includes(location);

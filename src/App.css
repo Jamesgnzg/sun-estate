@@ -1,0 +1,9 @@
+/*
+    Add global stylings here
+*/
+
+@layer components {
+  .input-ring {
+    @apply ring-2 ring-red-600;
+  }
+}
