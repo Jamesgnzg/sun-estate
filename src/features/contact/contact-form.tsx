@@ -87,12 +87,8 @@ const ContactForm: FC = (): ReactElement => {
   if (isSubmitted) {
     return (
       <div className="rounded-lg bg-white p-6 shadow">
-        <h2 className="text-xl font-medium text-gray-900">
-          {SUCCESS_TITLE}
-        </h2>
-        <p className="mt-2 text-gray-600">
-          {SUCCESS_MESSAGE}
-        </p>
+        <h2 className="text-xl font-medium text-gray-900">{SUCCESS_TITLE}</h2>
+        <p className="mt-2 text-gray-600">{SUCCESS_MESSAGE}</p>
         <button
           type="button"
           onClick={() => setIsSubmitted(false)}
@@ -105,7 +101,7 @@ const ContactForm: FC = (): ReactElement => {
   }
 
   const inputClass = (field: keyof ContactDetails) =>
-    `mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:ring-2 focus:ring-gray-700 ${
+    `mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:input-ring ${
       errors[field] ? "border-red-500" : "border-gray-300"
     }`;
 
@@ -115,16 +111,15 @@ const ContactForm: FC = (): ReactElement => {
       noValidate
       className="rounded-lg bg-white p-6 shadow"
     >
-      <h2 className="text-xl font-medium text-gray-900">
-        {FORM_TITLE}
-      </h2>
-      <p className="mt-1 text-sm text-gray-600">
-        {FORM_SUBTITLE}
-      </p>
+      <h2 className="text-xl font-medium text-gray-900">{FORM_TITLE}</h2>
+      <p className="mt-1 text-sm text-gray-600">{FORM_SUBTITLE}</p>
 
       <div className="mt-4 space-y-4">
         <div>
-          <label htmlFor="fullName" className="text-sm font-medium text-gray-700">
+          <label
+            htmlFor="fullName"
+            className="text-sm font-medium text-gray-700"
+          >
             {FULL_NAME}
           </label>
           <input
@@ -182,10 +177,7 @@ const ContactForm: FC = (): ReactElement => {
         </div>
       </div>
 
-      <button
-        type="submit"
-        className="mt-6 w-full rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-700"
-      >
+      <button type="submit" className="mt-6 w-full btn-primary">
         {SUBMIT}
       </button>
     </form>

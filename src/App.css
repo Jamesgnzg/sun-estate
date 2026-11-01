@@ -6,4 +6,9 @@
   .input-ring {
     @apply ring-2 ring-red-600 duration-300;
   }
+
+  /* Scoped to #root (like the `important` config) so it overrides Tailwind Button styles */
+  #root .btn-primary {
+    @apply py-2 px-5 bg-primary font-semibold rounded-lg hover:bg-primary-50 text-white;
+  }
 }

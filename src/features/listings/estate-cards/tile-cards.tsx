@@ -46,7 +46,7 @@ const TileCards: FC<TileCardsProps> = ({
       </div>
       <Divider />
       <div className="flex gap-3 p-3 md:p-3">
-        <Button className="w-72 bg-red-500 rounded-lg" variant="contained">
+        <Button className="w-72 btn-primary" variant="contained">
           {CHAT_AGENT}
         </Button>
         <IconButton aria-label={FAVORITE}>
