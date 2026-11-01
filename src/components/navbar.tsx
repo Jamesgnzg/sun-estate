@@ -1,7 +1,16 @@
 import { FC, ReactElement } from "react";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FOR_SALE, CONTACT } from "../routes/paths";
 import { NAV_LABELS } from "../constants/labels";
+
+// NavLink passes isActive when the current location matches its "to"
+const navLinkClass = ({ isActive }: { isActive: boolean }): string =>
+  `rounded-md px-3 py-2 ${
+    isActive
+      ? "text-white bg-gray-500"
+      : "text-gray-300 hover:bg-gray-700 hover:text-white"
+  }`;
+
 const NavBar: FC = (): ReactElement => {
   const {
     BRAND,
@@ -18,13 +27,9 @@ const NavBar: FC = (): ReactElement => {
         <div className="flex justify-between">
           <p className="px-3 py-2 text-white">{BRAND}</p>
           <div className="flex space-x-4">
-            <Link
-              to={FOR_SALE}
-              className="rounded-md px-3 py-2  text-white bg-gray-700"
-              aria-current="page"
-            >
+            <NavLink to={FOR_SALE} className={navLinkClass}>
               {FOR_SALE_LABEL}
-            </Link>
+            </NavLink>
             <a
               href="#"
               className="rounded-md px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
@@ -43,12 +48,9 @@ const NavBar: FC = (): ReactElement => {
             >
               {SELL}
             </a>
-            <Link
-              to={CONTACT}
-              className="rounded-md px-3 py-2 text-gray-300 hover:bg-gray-700 hover:text-white"
-            >
+            <NavLink to={CONTACT} className={navLinkClass}>
               {CONTACT_US}
-            </Link>
+            </NavLink>
           </div>
           <div className="flex justify-between">
             <p className="px-3 py-2 text-white">Hi Joseph!</p>
