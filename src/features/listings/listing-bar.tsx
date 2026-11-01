@@ -3,6 +3,7 @@ import { FC, ReactElement } from "react";
 import { FilterValue } from "../../interface/filter";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { useListings } from "../../context/listings-context";
+import { LISTINGS_LABELS } from "../../constants/labels";
 
 interface ListingsBarProps {
   filterPills: FilterValue[];
@@ -11,6 +12,7 @@ interface ListingsBarProps {
 const ListingsBar: FC<ListingsBarProps> = ({
   filterPills,
 }: ListingsBarProps): ReactElement => {
+  const { RESULTS_SUFFIX, CLEAR_FILTER } = LISTINGS_LABELS;
   const { estates, clearFilters } = useListings();
 
   const createFilterPill = (
@@ -29,7 +31,7 @@ const ListingsBar: FC<ListingsBarProps> = ({
 
   return (
     <div className="flex justify-between pb-3">
-      <p className="pt-2">{`${estates.length} (Houses for sale)`}</p>
+      <p className="pt-2 font-bold">{`${estates.length} ${RESULTS_SUFFIX}`}</p>
       <div className="flex flex-wrap space-x-4 grow-0">
         {filterPills.map((filter, index) => createFilterPill(filter, index))}
       </div>
@@ -40,7 +42,7 @@ const ListingsBar: FC<ListingsBarProps> = ({
           endIcon={<RestartAltIcon />}
           onClick={clearFilters}
         >
-          Clear Filter
+          {CLEAR_FILTER}
         </Button>
       </div>
     </div>

@@ -6,6 +6,7 @@ import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import OpenWithRoundedIcon from "@mui/icons-material/OpenWithRounded";
 import { convertToDollarFormat } from "../../../utils/currency";
 import { Estate } from "../../../interface/estate";
+import { LISTINGS_LABELS } from "../../../constants/labels";
 
 interface TileCardsProps {
   estate: Estate;
@@ -13,12 +14,13 @@ interface TileCardsProps {
 const TileCards: FC<TileCardsProps> = ({
   estate,
 }: TileCardsProps): ReactElement => {
+  const { CARD_IMAGE_ALT, CHAT_AGENT, FAVORITE } = LISTINGS_LABELS;
   return (
     <div className="w-full bg-neutral-50 border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
       <img
         className="w-full h-auto rounded-t-xl"
         src="https://images.unsplash.com/photo-1680868543815-b8666dba60f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80"
-        alt="Card Image"
+        alt={CARD_IMAGE_ALT}
       />
       <div className="p-1">
         <Typography
@@ -45,9 +47,9 @@ const TileCards: FC<TileCardsProps> = ({
       <Divider />
       <div className="flex gap-3 p-3 md:p-3">
         <Button className="w-72 bg-red-500 rounded-lg" variant="contained">
-          Chat Agent
+          {CHAT_AGENT}
         </Button>
-        <IconButton aria-label="favorite">
+        <IconButton aria-label={FAVORITE}>
           <FavoriteBorderIcon />
         </IconButton>
       </div>

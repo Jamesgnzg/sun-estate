@@ -1,5 +1,6 @@
 import { ChangeEvent, FC, FormEvent, ReactElement, useState } from "react";
 import { ContactDetails } from "../../interface/contact";
+import { CONTACT_ERRORS, CONTACT_LABELS } from "../../constants/labels";
 
 type ContactErrors = Partial<Record<keyof ContactDetails, string>>;
 
@@ -13,30 +14,50 @@ const INITIAL_VALUES: ContactDetails = {
 const PH_MOBILE_REGEX = /^(09|\+639)\d{9}$/;
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
+const {
+  FULL_NAME_REQUIRED,
+  MOBILE_REQUIRED,
+  MOBILE_INVALID,
+  EMAIL_REQUIRED,
+  EMAIL_INVALID,
+} = CONTACT_ERRORS;
+
 const validate = (values: ContactDetails): ContactErrors => {
   const errors: ContactErrors = {};
 
   if (!values.fullName.trim()) {
-    errors.fullName = "Full name is required.";
+    errors.fullName = FULL_NAME_REQUIRED;
   }
 
   const mobile = values.mobileNumber.replace(/[\s-]/g, "");
   if (!mobile) {
-    errors.mobileNumber = "Mobile number is required.";
+    errors.mobileNumber = MOBILE_REQUIRED;
   } else if (!PH_MOBILE_REGEX.test(mobile)) {
-    errors.mobileNumber = "Use 09XXXXXXXXX or +639XXXXXXXXX format.";
+    errors.mobileNumber = MOBILE_INVALID;
   }
 
   if (!values.email.trim()) {
-    errors.email = "Email address is required.";
+    errors.email = EMAIL_REQUIRED;
   } else if (!EMAIL_REGEX.test(values.email.trim())) {
-    errors.email = "Enter a valid email address.";
+    errors.email = EMAIL_INVALID;
   }
 
   return errors;
 };
 
 const ContactForm: FC = (): ReactElement => {
+  const {
+    SUCCESS_TITLE,
+    SUCCESS_MESSAGE,
+    SEND_ANOTHER,
+    FORM_TITLE,
+    FORM_SUBTITLE,
+    FULL_NAME,
+    MOBILE_NUMBER,
+    MOBILE_PLACEHOLDER,
+    EMAIL,
+    SUBMIT,
+  } = CONTACT_LABELS;
   const [values, setValues] = useState<ContactDetails>(INITIAL_VALUES);
   const [errors, setErrors] = useState<ContactErrors>({});
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -66,16 +87,18 @@ const ContactForm: FC = (): ReactElement => {
   if (isSubmitted) {
     return (
       <div className="rounded-lg bg-white p-6 shadow">
-        <h2 className="text-xl font-medium text-gray-900">Thank you!</h2>
+        <h2 className="text-xl font-medium text-gray-900">
+          {SUCCESS_TITLE}
+        </h2>
         <p className="mt-2 text-gray-600">
-          We received your details and will contact you shortly.
+          {SUCCESS_MESSAGE}
         </p>
         <button
           type="button"
           onClick={() => setIsSubmitted(false)}
           className="mt-4 rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-700"
         >
-          Send another request
+          {SEND_ANOTHER}
         </button>
       </div>
     );
@@ -92,15 +115,17 @@ const ContactForm: FC = (): ReactElement => {
       noValidate
       className="rounded-lg bg-white p-6 shadow"
     >
-      <h2 className="text-xl font-medium text-gray-900">Get in touch</h2>
+      <h2 className="text-xl font-medium text-gray-900">
+        {FORM_TITLE}
+      </h2>
       <p className="mt-1 text-sm text-gray-600">
-        Leave your details and our team will reach out to you.
+        {FORM_SUBTITLE}
       </p>
 
       <div className="mt-4 space-y-4">
         <div>
           <label htmlFor="fullName" className="text-sm font-medium text-gray-700">
-            Full name
+            {FULL_NAME}
           </label>
           <input
             id="fullName"
@@ -121,14 +146,14 @@ const ContactForm: FC = (): ReactElement => {
             htmlFor="mobileNumber"
             className="text-sm font-medium text-gray-700"
           >
-            Mobile number
+            {MOBILE_NUMBER}
           </label>
           <input
             id="mobileNumber"
             name="mobileNumber"
             type="tel"
             autoComplete="tel"
-            placeholder="09XXXXXXXXX"
+            placeholder={MOBILE_PLACEHOLDER}
             value={values.mobileNumber}
             onChange={handleChange}
             className={inputClass("mobileNumber")}
@@ -140,7 +165,7 @@ const ContactForm: FC = (): ReactElement => {
 
         <div>
           <label htmlFor="email" className="text-sm font-medium text-gray-700">
-            Email Address
+            {EMAIL}
           </label>
           <input
             id="email"
@@ -161,7 +186,7 @@ const ContactForm: FC = (): ReactElement => {
         type="submit"
         className="mt-6 w-full rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-700"
       >
-        Submit
+        {SUBMIT}
       </button>
     </form>
   );

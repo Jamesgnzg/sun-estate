@@ -6,6 +6,7 @@ import BedRoundedIcon from "@mui/icons-material/BedRounded";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import OpenWithRoundedIcon from "@mui/icons-material/OpenWithRounded";
 import { convertToDollarFormat } from "../../../utils/currency";
+import { LISTINGS_LABELS } from "../../../constants/labels";
 
 interface ListEstateProps {
   estate: Estate;
@@ -14,13 +15,14 @@ interface ListEstateProps {
 const ListEstate: FC<ListEstateProps> = ({
   estate,
 }: ListEstateProps): ReactElement => {
+  const { CARD_IMAGE_ALT, FAVORITE, CHAT_AGENT } = LISTINGS_LABELS;
   return (
     <>
       <div className="flex bg-neutral-50 border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
         <img
           className="h-auto rounded-t-xl"
           src="https://images.unsplash.com/photo-1680868543815-b8666dba60f7?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=320&q=80"
-          alt="Card Image"
+          alt={CARD_IMAGE_ALT}
         />
         <div className="flex flex-col w-full">
           <div className="p-3">
@@ -55,14 +57,14 @@ const ListEstate: FC<ListEstateProps> = ({
                 </div>
               </div>
               <div className="flex gap-3">
-                <IconButton aria-label="favorite">
+                <IconButton aria-label={FAVORITE}>
                   <FavoriteBorderIcon />
                 </IconButton>
                 <Button
                   className="w-52 bg-red-500 rounded-lg"
                   variant="contained"
                 >
-                  Chat Agent
+                  {CHAT_AGENT}
                 </Button>
               </div>
             </div>

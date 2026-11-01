@@ -4,10 +4,11 @@ import { Filters } from "../../../data/filter-options";
 import { Filter, FilterOptions } from "../../../interface/filter";
 import { useListings } from "../../../context/listings-context";
 import FilterList from "../filter/Filters";
+import { LISTINGS_LABELS } from "../../../constants/labels";
 
 const ListingsFilter: FC = (): ReactElement => {
+  const { FILTER_TITLE } = LISTINGS_LABELS;
   const { addFilterProperty } = useListings();
-  const filtertitle = "Filter by";
   const filterOptions = Filters;
 
   const createFiltersOptions = (FilterOptions: FilterOptions[]) => {
@@ -30,7 +31,7 @@ const ListingsFilter: FC = (): ReactElement => {
       <aside id="default-sidebar" aria-label="Sidebar">
         <div className="h-full p-5 overflow-y-auto bg-neutral-50">
           <Typography component="span" className="text-2xl">
-            {filtertitle}
+            {FILTER_TITLE}
           </Typography>
           <Stack className="pt-5">
             {filterOptions.map((filter, index) => (

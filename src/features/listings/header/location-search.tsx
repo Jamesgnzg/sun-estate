@@ -10,10 +10,12 @@ import {
 import { useListings } from "../../../context/listings-context";
 import { Estates } from "../../../data/estates";
 import { Filter } from "../../../interface/filter";
+import { LOCATION_SEARCH_LABELS } from "../../../constants/labels";
 
 const LOCATION_PROPERTY = "location";
 
 const LocationSearch: FC = (): ReactElement => {
+  const { REMOVE, PLACEHOLDER, CLEAR, NO_RESULTS } = LOCATION_SEARCH_LABELS;
   const { filters, updateFilters } = useListings();
   const [query, setQuery] = useState("");
   const [isOpen, setIsOpen] = useState(false);
@@ -121,7 +123,7 @@ const LocationSearch: FC = (): ReactElement => {
             {location}
             <button
               type="button"
-              aria-label={`Remove ${location}`}
+              aria-label={`${REMOVE} ${location}`}
               className="leading-none hover:text-gray-200"
               onClick={(event) => {
                 event.stopPropagation();
@@ -144,7 +146,7 @@ const LocationSearch: FC = (): ReactElement => {
               ? `location-option-${activeIndex}`
               : undefined
           }
-          placeholder={selected.length ? "" : "Search location"}
+          placeholder={selected.length ? "" : PLACEHOLDER}
           value={query}
           onChange={(event) => {
             setQuery(event.target.value);
@@ -157,7 +159,7 @@ const LocationSearch: FC = (): ReactElement => {
         {(selected.length > 0 || query) && (
           <button
             type="button"
-            aria-label="Clear locations"
+            aria-label={CLEAR}
             className="ml-auto rounded-full px-2 text-lg leading-none text-gray-500 hover:bg-gray-100 hover:text-gray-900"
             onClick={(event) => {
               event.stopPropagation();
@@ -178,7 +180,7 @@ const LocationSearch: FC = (): ReactElement => {
         >
           {filteredLocations.length === 0 ? (
             <li className="px-3 py-2 text-sm text-gray-500">
-              No locations found
+              {NO_RESULTS}
             </li>
           ) : (
             filteredLocations.map((location, index) => {

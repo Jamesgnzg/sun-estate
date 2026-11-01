@@ -20,18 +20,22 @@ const ListingViews: FC = (): ReactElement => {
 
   return (
     <>
-      <div
-        className={`w-full grid gap-3 ${
-          viewType == TILE ? "grid-cols-4" : "grid-cols-1"
-        }`}
-      >
-        {estates.map((estate, index) =>
-          viewType == TILE ? (
-            <TileCards estate={estate} key={index} />
-          ) : (
-            <ListEstate estate={estate} key={index} />
-          )
-        )}
+      <div className="w-full flex flex-wrap gap-3">
+        {estates.map((estate, index) => (
+          // Wrapper persists across view toggles so its width can transition
+          <div
+            key={index}
+            className={`transition-[width] duration-700 ease-in-out motion-reduce:transition-none ${
+              viewType == TILE ? "w-[calc(25%-0.5625rem)]" : "w-full"
+            }`}
+          >
+            {viewType == TILE ? (
+              <TileCards estate={estate} />
+            ) : (
+              <ListEstate estate={estate} />
+            )}
+          </div>
+        ))}
       </div>
     </>
   );
