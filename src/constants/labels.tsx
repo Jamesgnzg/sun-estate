@@ -11,7 +11,7 @@ export const NAV_LABELS = {
 export const LISTINGS_LABELS = {
   FILTER_TITLE: "Filter by",
   CLEAR_FILTER: "Clear Filter",
-  RESULTS_SUFFIX: "(Houses for sale)",
+  RESULTS_SUFFIX: "(Properties for sale)",
   CHAT_AGENT: "Chat Agent",
   FAVORITE: "favorite",
   CARD_IMAGE_ALT: "Card Image",
