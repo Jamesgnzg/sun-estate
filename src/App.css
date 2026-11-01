@@ -4,6 +4,6 @@
 
 @layer components {
   .input-ring {
-    @apply ring-2 ring-red-600;
+    @apply ring-2 ring-red-600 duration-300;
   }
 }

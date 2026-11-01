@@ -171,45 +171,46 @@ const LocationSearch: FC = (): ReactElement => {
         )}
       </div>
 
-      {isOpen && (
-        <ul
-          id="location-listbox"
-          role="listbox"
-          aria-multiselectable="true"
-          className="absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg"
-        >
-          {filteredLocations.length === 0 ? (
-            <li className="px-3 py-2 text-sm text-gray-500">{NO_RESULTS}</li>
-          ) : (
-            filteredLocations.map((location, index) => {
-              const isSelected = selected.includes(location);
-              return (
-                <li
-                  key={location}
-                  id={`location-option-${index}`}
-                  role="option"
-                  aria-selected={isSelected}
-                  onMouseDown={(event) => event.preventDefault()}
-                  onClick={() => toggleLocation(location)}
-                  onMouseEnter={() => setActiveIndex(index)}
-                  className={`flex cursor-pointer items-center gap-2 px-3 py-2 text-sm ${
-                    index === activeIndex ? "bg-gray-100" : ""
-                  }`}
-                >
-                  <input
-                    type="checkbox"
-                    readOnly
-                    tabIndex={-1}
-                    checked={isSelected}
-                    className="accent-red-500"
-                  />
-                  {location}
-                </li>
-              );
-            })
-          )}
-        </ul>
-      )}
+      {/* Always rendered so the list can fade out as well as in */}
+      <ul
+        id="location-listbox"
+        role="listbox"
+        aria-multiselectable="true"
+        className={`absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg transition-[opacity,visibility] duration-500 ease-out motion-reduce:transition-none ${
+          isOpen ? "visible opacity-100" : "invisible opacity-0"
+        }`}
+      >
+        {filteredLocations.length === 0 ? (
+          <li className="px-3 py-2 text-sm text-gray-500">{NO_RESULTS}</li>
+        ) : (
+          filteredLocations.map((location, index) => {
+            const isSelected = selected.includes(location);
+            return (
+              <li
+                key={location}
+                id={`location-option-${index}`}
+                role="option"
+                aria-selected={isSelected}
+                onMouseDown={(event) => event.preventDefault()}
+                onClick={() => toggleLocation(location)}
+                onMouseEnter={() => setActiveIndex(index)}
+                className={`flex cursor-pointer items-center gap-2 px-3 py-2 text-sm ${
+                  index === activeIndex ? "bg-gray-100" : ""
+                }`}
+              >
+                <input
+                  type="checkbox"
+                  readOnly
+                  tabIndex={-1}
+                  checked={isSelected}
+                  className="accent-red-500"
+                />
+                {location}
+              </li>
+            );
+          })
+        )}
+      </ul>
     </div>
   );
 };
