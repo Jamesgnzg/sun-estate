@@ -45,4 +45,15 @@ export const Filters: FilterOptions[] = [
       { label: "Over $1M", value: 4, range: { min: 1000000 } },
     ],
   },
+  {
+    filterTitle: "Area Size",
+    filterProperty: "area",
+    options: [
+      { label: "Under 100 sqm", value: 0, range: { min: 0, max: 100 } },
+      { label: "200 sqm - 300 sqm", value: 1, range: { min: 200, max: 300 } },
+      { label: "300 sqm - 400 sqm", value: 2, range: { min: 300, max: 400 } },
+      { label: "500 sqm - 600 sqm", value: 3, range: { min: 500, max: 600 } },
+      { label: "Over 1000 sqm", value: 4, range: { min: 1000 } },
+    ],
+  },
 ] as const;
