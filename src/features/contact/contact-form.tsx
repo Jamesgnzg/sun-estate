@@ -101,7 +101,7 @@ const ContactForm: FC = (): ReactElement => {
   }
 
   const inputClass = (field: keyof ContactDetails) =>
-    `mt-1 w-full rounded-md border px-3 py-2 focus:outline-none focus:input-ring ${
+    `mt-1 w-full rounded-md border px-3 py-2 ring-offset-0 outline-none focus-within:input-ring ${
       errors[field] ? "border-red-500" : "border-gray-300"
     }`;
 
