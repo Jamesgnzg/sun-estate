@@ -176,7 +176,7 @@ const LocationSearch: FC = (): ReactElement => {
         id="location-listbox"
         role="listbox"
         aria-multiselectable="true"
-        className={`absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg transition-[opacity,visibility] duration-500 ease-out motion-reduce:transition-none ${
+        className={`absolute z-10 mt-1 max-h-60 w-full overflow-y-auto rounded-md border border-gray-200 bg-white py-1 shadow-lg transition-[opacity,visibility] duration-300 ease-out motion-reduce:transition-none ${
           isOpen ? "visible opacity-100" : "invisible opacity-0"
         }`}
       >
