@@ -13,6 +13,15 @@ export default {
           DEFAULT: "#f53431",
         },
       },
+      keyframes: {
+        "spin-reverse": {
+          from: { transform: "rotate(0deg)" },
+          to: { transform: "rotate(-360deg)" },
+        },
+      },
+      animation: {
+        "spin-once": "spin-reverse 500ms ease-in-out",
+      },
     },
   },
   plugins: [],

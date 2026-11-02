@@ -1,5 +1,5 @@
 import { Button, Chip } from "@mui/material";
-import { FC, ReactElement } from "react";
+import { FC, ReactElement, useState } from "react";
 import { FilterValue } from "../../interface/filter";
 import RestartAltIcon from "@mui/icons-material/RestartAlt";
 import { useListings } from "../../context/listings-context";
@@ -14,6 +14,13 @@ const ListingsBar: FC<ListingsBarProps> = ({
 }: ListingsBarProps): ReactElement => {
   const { RESULTS_SUFFIX, CLEAR_FILTER } = LISTINGS_LABELS;
   const { estates, clearFilters } = useListings();
+  const [spinCount, setSpinCount] = useState(0);
+
+  const handleClearFilters = () => {
+    // A new key remounts the icon so the spin replays on every click
+    setSpinCount((count) => count + 1);
+    clearFilters();
+  };
 
   const createFilterPill = (
     filter: FilterValue,
@@ -39,8 +46,13 @@ const ListingsBar: FC<ListingsBarProps> = ({
         <Button
           variant="outlined"
           className="bg-stone-200 border-stone-200 rounded-lg text-black"
-          endIcon={<RestartAltIcon />}
-          onClick={clearFilters}
+          endIcon={
+            <RestartAltIcon
+              key={spinCount}
+              className={spinCount > 0 ? "motion-safe:animate-spin-once" : ""}
+            />
+          }
+          onClick={handleClearFilters}
         >
           {CLEAR_FILTER}
         </Button>
