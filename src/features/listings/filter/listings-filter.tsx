@@ -31,7 +31,7 @@ const ListingsFilter: FC = (): ReactElement => {
       <aside
         id="default-sidebar"
         aria-label="Sidebar"
-        className="shadow-xl h-screen"
+        className="shadow-xl min-h-screen"
       >
         <div className="h-full p-5 overflow-y-auto bg-neutral-50">
           <Typography component="span" className="text-2xl">
