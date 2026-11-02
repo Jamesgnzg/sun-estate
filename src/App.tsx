@@ -7,14 +7,20 @@
  * Date: January 3, 2025
  */
 
-import { Navigate, Route, Routes } from "react-router-dom";
+import { Navigate, Route, Routes, useLocation } from "react-router-dom";
 import MainLayout from "./layout/main-layout";
 import { INDEX } from "./routes/paths";
 import { privateRoutes } from "./routes/routes";
+import { Helmet } from "react-helmet-async";
+import { getTitleFromRoute } from "./utils/docTitle";
 
 const App = () => {
+  const { pathname } = useLocation();
   return (
     <>
+      <Helmet>
+        <title>{getTitleFromRoute(pathname)}</title>
+      </Helmet>
       <Routes>
         <Route element={<MainLayout />}>
           {privateRoutes.map((route) => (
