@@ -53,9 +53,11 @@ const ContactForm: FC = (): ReactElement => {
     FORM_TITLE,
     FORM_SUBTITLE,
     FULL_NAME,
+    FULL_NAME_PLACEHOLDER,
     MOBILE_NUMBER,
     MOBILE_PLACEHOLDER,
     EMAIL,
+    EMAIL_PLACEHOLDER,
     SUBMIT,
   } = CONTACT_LABELS;
   const [values, setValues] = useState<ContactDetails>(INITIAL_VALUES);
@@ -92,7 +94,7 @@ const ContactForm: FC = (): ReactElement => {
         <button
           type="button"
           onClick={() => setIsSubmitted(false)}
-          className="mt-4 rounded-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-700"
+          className="mt-4 rounded-md btn-primary"
         >
           {SEND_ANOTHER}
         </button>
@@ -127,6 +129,7 @@ const ContactForm: FC = (): ReactElement => {
             name="fullName"
             type="text"
             autoComplete="name"
+            placeholder={FULL_NAME_PLACEHOLDER}
             value={values.fullName}
             onChange={handleChange}
             className={inputClass("fullName")}
@@ -167,6 +170,7 @@ const ContactForm: FC = (): ReactElement => {
             name="email"
             type="email"
             autoComplete="email"
+            placeholder={EMAIL_PLACEHOLDER}
             value={values.email}
             onChange={handleChange}
             className={inputClass("email")}
