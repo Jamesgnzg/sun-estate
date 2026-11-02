@@ -1,12 +1,12 @@
-import { Button, Divider, IconButton, Typography } from "@mui/material";
+import { Button, Divider, Typography } from "@mui/material";
 import { FC, ReactElement, memo } from "react";
 import { Estate } from "../../../interface/estate";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
 import BedRoundedIcon from "@mui/icons-material/BedRounded";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import OpenWithRoundedIcon from "@mui/icons-material/OpenWithRounded";
 import { convertToDollarFormat } from "../../../utils/currency";
 import { LISTINGS_LABELS } from "../../../constants/labels";
+import FavoriteButton from "./common/favorite-button";
 
 interface ListEstateProps {
   estate: Estate;
@@ -15,7 +15,7 @@ interface ListEstateProps {
 const ListEstate: FC<ListEstateProps> = ({
   estate,
 }: ListEstateProps): ReactElement => {
-  const { CARD_IMAGE_ALT, FAVORITE, CHAT_AGENT } = LISTINGS_LABELS;
+  const { CARD_IMAGE_ALT, CHAT_AGENT } = LISTINGS_LABELS;
   return (
     <>
       <div className="flex bg-neutral-50 border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
@@ -57,9 +57,7 @@ const ListEstate: FC<ListEstateProps> = ({
                 </div>
               </div>
               <div className="flex gap-3">
-                <IconButton aria-label={FAVORITE}>
-                  <FavoriteBorderIcon />
-                </IconButton>
+                <FavoriteButton />
                 <Button
                   className="w-52 bg-red-500 rounded-lg"
                   variant="contained"
