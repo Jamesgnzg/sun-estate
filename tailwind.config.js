@@ -1,9 +1,13 @@
 /** @type {import('tailwindcss').Config} */
+const defaultTheme = require("tailwindcss/defaultTheme");
 export default {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   important: "#root",
   theme: {
     extend: {
+      fontFamily: {
+        sans: ["Work Sans Variable", ...defaultTheme.fontFamily.sans],
+      },
       colors: {
         primary: {
           DEFAULT: "#e33a07",
