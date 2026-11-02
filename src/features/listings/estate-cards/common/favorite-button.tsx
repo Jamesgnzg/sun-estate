@@ -22,7 +22,7 @@ const FavoriteButton: FC<FavoriteButtonProps> = ({
       onClick={() => setIsFavorite((prev) => !prev)}
     >
       {isFavorite ? (
-        <FavoriteIcon sx={{ color: "#f53431" }} />
+        <FavoriteIcon className="text-favorite" />
       ) : (
         <FavoriteBorderIcon />
       )}

@@ -9,6 +9,9 @@ export default {
           DEFAULT: "#e33a07",
           50: "#bd3006",
         },
+        favorite: {
+          DEFAULT: "#f53431",
+        },
       },
     },
   },
