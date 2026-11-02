@@ -1,6 +1,7 @@
 import { Button, Divider, IconButton, Typography } from "@mui/material";
-import { FC, memo, ReactElement } from "react";
+import { FC, memo, ReactElement, useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import BedRoundedIcon from "@mui/icons-material/BedRounded";
 import BathtubOutlinedIcon from "@mui/icons-material/BathtubOutlined";
 import OpenWithRoundedIcon from "@mui/icons-material/OpenWithRounded";
@@ -15,6 +16,8 @@ const TileCards: FC<TileCardsProps> = ({
   estate,
 }: TileCardsProps): ReactElement => {
   const { CARD_IMAGE_ALT, CHAT_AGENT, FAVORITE } = LISTINGS_LABELS;
+  const [isFavorite, setIsFavorite] = useState(false);
+
   return (
     <div className="w-full bg-neutral-50 border shadow-sm rounded-xl dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-neutral-700/70">
       <img
@@ -49,8 +52,17 @@ const TileCards: FC<TileCardsProps> = ({
         <Button className="w-72 btn-primary" variant="contained">
           {CHAT_AGENT}
         </Button>
-        <IconButton aria-label={FAVORITE}>
-          <FavoriteBorderIcon />
+        <IconButton
+          aria-label={FAVORITE}
+          aria-pressed={isFavorite}
+          className="bg-gray-100"
+          onClick={() => setIsFavorite((prev) => !prev)}
+        >
+          {isFavorite ? (
+            <FavoriteIcon sx={{ color: "#f53431" }} />
+          ) : (
+            <FavoriteBorderIcon />
+          )}
         </IconButton>
       </div>
     </div>

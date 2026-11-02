@@ -19,3 +19,4 @@ I am a full stack developer that specialize in web applications and I'm currentl
 - Tailwindcss v3.14.17
 - React v18.3.1
 - Typescript v5.6.2
+- Material UI 6.3.0
