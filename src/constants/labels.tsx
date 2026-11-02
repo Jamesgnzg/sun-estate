@@ -20,7 +20,7 @@ export const LISTINGS_LABELS = {
 } as const;
 
 export const LOCATION_SEARCH_LABELS = {
-  PLACEHOLDER: "Search location",
+  PLACEHOLDER: "Search Location (e.g. Quezon City, Marikina City, Taguig City)",
   NO_RESULTS: "No locations found",
   CLEAR: "Clear locations",
   REMOVE: "Remove",
