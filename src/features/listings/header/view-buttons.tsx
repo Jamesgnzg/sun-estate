@@ -10,11 +10,9 @@ const ViewButtons: FC = (): ReactElement => {
   const { viewType, updateView } = useListings();
   const { LIST, TILE } = Views;
 
-  const handleChange = (
-    event: React.MouseEvent<HTMLElement>,
-    nextView: ViewTypes
-  ) => {
-    updateView(nextView);
+  const handleChange = (_: unknown, nextView: ViewTypes | null) => {
+    // Exclusive groups pass null when the active button is clicked again
+    if (nextView) updateView(nextView);
   };
 
   return (
