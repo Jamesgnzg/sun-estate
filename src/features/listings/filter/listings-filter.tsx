@@ -28,7 +28,11 @@ const ListingsFilter: FC = (): ReactElement => {
 
   return (
     <>
-      <aside id="default-sidebar" aria-label="Sidebar" className="shadow-xl">
+      <aside
+        id="default-sidebar"
+        aria-label="Sidebar"
+        className="shadow-xl h-screen"
+      >
         <div className="h-full p-5 overflow-y-auto bg-neutral-50">
           <Typography component="span" className="text-2xl">
             {FILTER_TITLE}
