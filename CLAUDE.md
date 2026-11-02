@@ -12,7 +12,7 @@ I am a full stack developer that specialize in web applications and I'm currentl
 - Show your plan and steps before executing
 - Keep reports and summaries concise - bullet points over paragaraphs
 - Cite sources when doing research
-- Follow the convetions and structure I have created for this project
+- Follow the conventions and structure I have created for this project
 - I want hard coded values to be configurable and reusable
 
 # Tech Stacks

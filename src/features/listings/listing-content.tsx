@@ -18,6 +18,13 @@ const ListingContent: FC = (): ReactElement => {
             value: filter.values[i],
           });
         }
+        // Slider ranges get their own pill when no bracket is checked
+        if (filter.values.length === 0 && filter.rangeLabel) {
+          newFilterPills.push({
+            label: filter.rangeLabel,
+            value: filter.range?.min ?? 0,
+          });
+        }
       });
 
       return newFilterPills;

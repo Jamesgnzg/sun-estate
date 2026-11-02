@@ -4,6 +4,9 @@ export interface Filter {
   property: keyof Estate;
   valueLabels: string[];
   values: any[];
+  // Set by the range slider; estates must fall within [min, max]
+  range?: FilterRange;
+  rangeLabel?: string;
 }
 
 export interface FilterRange {
@@ -22,4 +25,6 @@ export interface FilterOptions {
   filterTitle: string;
   filterProperty: keyof Estate;
   options: FilterValue[];
+  // Formats slider values for range filters, e.g. currency or sqm
+  formatValue?: (value: number) => string;
 }

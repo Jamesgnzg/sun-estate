@@ -8,9 +8,16 @@ import { ViewTypes } from "../types/ViewTypes";
 const { TILE } = Views;
 
 const matchesFilter = (estate: Estate, filter: Filter): boolean => {
+  const estateValue = estate[filter.property];
+
+  if (filter.range) {
+    const value = Number(estateValue);
+    const { min, max } = filter.range;
+    if (value < min || (max !== undefined && value > max)) return false;
+  }
+
   if (filter.values.length === 0) return true;
 
-  const estateValue = estate[filter.property];
   const options =
     Filters.find((option) => option.filterProperty == filter.property)
       ?.options ?? [];
@@ -73,6 +80,8 @@ export const ListingsContextProvider = ({
       if (updatedIndex > -1) {
         newFilters[updatedIndex].valueLabels = updatedFilter.valueLabels;
         newFilters[updatedIndex].values = updatedFilter.values;
+        newFilters[updatedIndex].range = updatedFilter.range;
+        newFilters[updatedIndex].rangeLabel = updatedFilter.rangeLabel;
       } else {
         //if filter is not existing add a new filter
         newFilters.push(updatedFilter);
@@ -98,6 +107,8 @@ export const ListingsContextProvider = ({
       newFilter.forEach((filter) => {
         filter.valueLabels.length = 0;
         filter.values.length = 0;
+        filter.range = undefined;
+        filter.rangeLabel = undefined;
       });
 
       return newFilter;

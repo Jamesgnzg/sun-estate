@@ -41,6 +41,7 @@ const ListingsFilter: FC = (): ReactElement => {
                   filterTitle={filter.filterTitle}
                   filterProperty={filter.filterProperty}
                   filterOptions={filter.options}
+                  formatValue={filter.formatValue}
                 />
               </div>
             ))}

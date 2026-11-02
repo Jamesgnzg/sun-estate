@@ -1,5 +1,6 @@
 import { PropertyType } from "../enums/property-type";
 import { FilterOptions } from "../interface/filter";
+import { convertToDollarFormat } from "../utils/currency";
 
 const {
   SINGLE_FAMILY,
@@ -37,6 +38,7 @@ export const Filters: FilterOptions[] = [
   {
     filterTitle: "Price",
     filterProperty: "price",
+    formatValue: convertToDollarFormat,
     options: [
       { label: "Under $50K", value: 0, range: { min: 0, max: 50000 } },
       { label: "$50K - $250K", value: 1, range: { min: 50000, max: 250000 } },
@@ -48,6 +50,7 @@ export const Filters: FilterOptions[] = [
   {
     filterTitle: "Area Size",
     filterProperty: "area",
+    formatValue: (value: number) => `${value} sqm`,
     options: [
       { label: "Under 100 sqm", value: 0, range: { min: 0, max: 100 } },
       { label: "200 sqm - 300 sqm", value: 1, range: { min: 200, max: 300 } },

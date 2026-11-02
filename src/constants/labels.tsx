@@ -15,6 +15,8 @@ export const LISTINGS_LABELS = {
   CHAT_AGENT: "Chat Agent",
   FAVORITE: "favorite",
   CARD_IMAGE_ALT: "Card Image",
+  SLIDER_MIN: "minimum",
+  SLIDER_MAX: "maximum",
 } as const;
 
 export const LOCATION_SEARCH_LABELS = {
