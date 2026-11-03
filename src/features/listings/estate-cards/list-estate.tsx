@@ -57,7 +57,7 @@ const ListEstate: FC<ListEstateProps> = ({
                 </div>
               </div>
               <div className="flex gap-3">
-                <FavoriteButton />
+                <FavoriteButton className="bg-gray-100" />
                 <Button
                   className="w-52 bg-red-500 rounded-lg"
                   variant="contained"
